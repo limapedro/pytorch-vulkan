@@ -384,7 +384,7 @@ class TestFlyDSLTemplate(TestCase):
                 get_size=lambda: size,
                 get_stride=lambda: stride,
                 get_dtype=lambda: dtype,
-                get_layout=lambda: SimpleNamespace(offset=offset),
+                get_layout=lambda: SimpleNamespace(offset=offset, stride=stride),
             )
 
         mat1 = node(size, stride, offset)
@@ -417,7 +417,7 @@ class TestFlyDSLTemplate(TestCase):
                 get_size=lambda: size,
                 get_stride=lambda: stride,
                 get_dtype=lambda: torch.bfloat16,
-                get_layout=lambda: SimpleNamespace(offset=0),
+                get_layout=lambda: SimpleNamespace(offset=0, stride=stride),
             )
 
         m = 64
@@ -1803,7 +1803,7 @@ class TestFlyDSLTemplate(TestCase):
                 get_size=lambda: size,
                 get_stride=lambda: stride,
                 get_dtype=lambda: dtype,
-                get_layout=lambda: SimpleNamespace(offset=offset),
+                get_layout=lambda: SimpleNamespace(offset=offset, stride=stride),
             )
 
         fp8 = torch.float8_e4m3fn
