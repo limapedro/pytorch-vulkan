@@ -67,6 +67,30 @@ attempt). Wheel: `torch-2.15.0a0+git8f2938f`, 93,180,921 B. Verification:
 `torch.version.cuda is None`, `torch.cuda.is_available() is False`, basic `add`/`mm`
 sanity checks pass. ccache/sccache remains uninstalled (H3 in exp_002).
 
+## Building the Kaminari extension
+
+The backend is a standalone extension and is **not** part of the PyTorch build. With the
+fork venv active and a VS DevShell loaded:
+
+```
+cmake -S kaminari -B <build-dir> -G Ninja -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_PREFIX_PATH="<venv>/Lib/site-packages/torch;<venv>/Lib/site-packages/pybind11/share/cmake/pybind11"
+cmake --build <build-dir> --config Release
+pip install -e kaminari --no-build-isolation
+```
+
+`setup.py` runs the same CMake steps and registers the `torch.backends` autoload entry
+point. `pybind11` 3.1.0 and `expecttest` 0.3.0 were installed into the fork venv for the
+extension and its tests. Verification:
+
+```
+python -c "import torch; print(torch.kaminari.is_available(), torch.kaminari.device_count())"
+python kaminari/tests/test_smoke.py
+```
+
+Build artifacts (`*.pyd`, `build_cmake/`) are ignored by `kaminari/.gitignore` and are
+never committed. Evidence: `experiments/exp_005_device_registration/FINDINGS.md`.
+
 ## Baseline environments (measured)
 
 | Venv | Interpreter | torch | Purpose |

@@ -22,6 +22,8 @@ changing it.
 
 | D011 | 2026-11-25 | Keep `MAX_JOBS=2` for source builds on this host. | With 4 jobs, four large `torch/csrc/jit/passes/*.cpp` objects failed together with no diagnostic; with 2 jobs the build completed. | exp_002 attempts 4 and 5; `agent_space/build_fork.ps1`. | locked |
 
+| D012 | 2026-11-25 | Validate the out-of-tree PrivateUse1 route before writing kernels. | Device string, module functions, guard, hooks and autoload all work with an empty core diff; the extension builds standalone against the built Torch. | exp_005; `kaminari/CMakeLists.txt`, `kaminari/setup.py`, `kaminari/csrc/`. | locked |
+
 ## Pending decisions
 
 - Two-venv comparison strategy is locked as D009 but marked provisional on H1 (coexistence in one process was not directly tested).
