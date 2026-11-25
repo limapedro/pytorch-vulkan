@@ -56,16 +56,38 @@ with environment variables (`USE_CUDA=0`, `USE_DISTRIBUTED=0`, `BUILD_TESTING=0`
 `USE_CUDNN=0`, `CCACHE_WRAPPER` once installed) applied to that command. Exact successful
 commands, timings and fixes go here after the first build (issue #5).
 
+## Baseline environments (measured)
+
+| Venv | Interpreter | torch | Purpose |
+|---|---|---|---|
+| `agent_space/baseline/venv312` | Python 3.12.10 | `2.15.0+cu132` from `https://download.pytorch.org/whl/cu132` | primary CUDA baseline, version-matched to the fork |
+| `agent_space/baseline/venv` | Python 3.10.11 | `2.14.1+cu130` | secondary CUDA check; 3.10 cannot install 2.15.0 |
+| `agent_space/baseline/venv_dml` | Python 3.10.11 | `2.4.1+cpu` + `torch-directml 0.2.5.dev240914` | DirectML baseline; DML pins torch 2.4.1, so it needs its own venv |
+| `agent_space/fork/venv` | Python 3.12.10 | fork built from source, `USE_CUDA=0` | Kaminari build (not yet successful) |
+
+Install command for the primary baseline (exact):
+
+```
+& '...\venv312\Scripts\python.exe' -m pip install --no-cache-dir --progress-bar off --index-url https://download.pytorch.org/whl/cu132 --extra-index-url https://pypi.org/simple 'torch==2.15.0'
+```
+
+`--extra-index-url` works around a bad `typing_extensions` sdist on the PyTorch-only
+index. The PyPI Windows 2.15.0 wheel is CPU-only (126.7 MB); the `cu132` wheel is
+2108.3 MB. `pip index versions torch` on 3.10 tops out at 2.14.1.
+
+All baseline verification and benchmark commands must run with cwd at
+`agent_space/baseline`, not the repo root: from the repo root Python imports the
+unbuilt `torch/` source directory and fails with
+`ModuleNotFoundError: No module named 'torch.version'`.
+
 ## Two-environment rule
 
-The official CUDA wheel and the source fork cannot coexist in one process. The plan,
-to be locked **after** measurement, is:
-
-1. `agent_space/baseline/venv`: official CUDA wheel, reference numbers and serialized tensors.
-2. Fork venv: built from source with `USE_CUDA=0`, plus in-process CPU comparison.
-
-Baseline work is being done by a dedicated experiment; results land in
-`docs/BENCHMARKS.md` and `benchmarks/results/`.
+The official CUDA wheel and the source fork cannot coexist in one process. Decision
+D010 in `ARCHITECTURE_LOG.md` (locked after measurement in exp_004): keep the separate
+venvs, serialize fixed reference tensors from the baseline venv, and compare them
+cross-process against the fork's CPU result and (once built) the Vulkan device, with
+in-process CPU as a second control. Numbers and commands are in `docs/BENCHMARKS.md`
+and `benchmarks/kaminari/`.
 
 ## Upstream policy
 

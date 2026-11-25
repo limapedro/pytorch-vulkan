@@ -10,6 +10,7 @@ that would settle it; it is not a plan or a wish.
 | [exp_001](experiments/exp_001_recon/HYPOTHESIS.md) | Recon facts are sufficient to start Phase 0 without hardware changes; PrivateUse1 is the lowest-touch integration path. | done | confirmed (PrivateUse1 locked in D006) |
 | [exp_002](experiments/exp_002_build/HYPOTHESIS.md) | A no-CUDA source build succeeds on Windows with Python 3.12 and MSVC/Ninja. | running | setup failures found and fixed; build not reached |
 | [exp_003](experiments/exp_003_census/HYPOTHESIS.md) | Tier 0 primitives cover most dispatches; Tier 1 ops dominate profiled self time. | done | partial (transformers spread time across SDPA/layernorm) |
+| [exp_004](experiments/exp_004_cross_process/HYPOTHESIS.md) | CUDA and fork cannot coexist in one process; serialized references are necessary for parity. | done | H1 provisional (coexistence not directly tested), H2 confirmed for tiny tensors |
 
 ## Rules
 
