@@ -1,0 +1,1465 @@
+{
+  "torch_version": "2.11.0+cu126",
+  "note": "CPU census; version may differ from fork base v2.15.0",
+  "models": [
+    {
+      "model": "MLP",
+      "training": true,
+      "total_dispatches": 100,
+      "distinct_ops": 14,
+      "by_tier": {
+        "long_tail": 62,
+        "tier0": 24,
+        "tier1": 14
+      },
+      "all_counts": {
+        "aten.t.default": 28,
+        "aten.addmm.default": 6,
+        "aten.relu.default": 4,
+        "aten.detach.default": 24,
+        "aten.randint.low": 2,
+        "aten._log_softmax.default": 2,
+        "aten.nll_loss_forward.default": 2,
+        "aten.ones_like.default": 2,
+        "aten.nll_loss_backward.default": 2,
+        "aten._log_softmax_backward_data.default": 2,
+        "aten.mm.default": 10,
+        "aten.sum.dim_IntList": 6,
+        "aten.view.default": 6,
+        "aten.threshold_backward.default": 4
+      },
+      "all_self_cpu_us": {
+        "linear": 113.4000000000002,
+        "t": 235.60000000000153,
+        "PythonDispatchMode": 2509.0999999999945,
+        "transpose": 60.99999999999659,
+        "as_strided": 59.50000000000199,
+        "addmm": 1541.7999999999993,
+        "expand": 21.699999999999875,
+        "copy_": 67.79999999999927,
+        "resolve_conj": 10.700000000000273,
+        "relu": 227.90000000000026,
+        "clamp_min": 78.6000000000002,
+        "detach": 156.30000000000314,
+        "randint": 52.7999999999995,
+        "empty": 11.600000000000364,
+        "random_": 21.600000000000136,
+        "cross_entropy_loss": 32.09999999999991,
+        "log_softmax": 38.200000000000045,
+        "to": 11.400000000000318,
+        "_log_softmax": 152.79999999999995,
+        "nll_loss_nd": 17.09999999999991,
+        "nll_loss": 12.000000000000227,
+        "nll_loss_forward": 61.7999999999995,
+        "ones_like": 41.100000000000364,
+        "empty_like": 15.500000000000455,
+        "empty_strided": 18.09999999999991,
+        "fill_": 25.699999999999818,
+        "autograd": 161.00000000000205,
+        "NllLossBackward0": 22.40000000000009,
+        "nll_loss_backward": 103.39999999999964,
+        "zero_": 1.5000000000002274,
+        "LogSoftmaxBackward0": 62.69999999999982,
+        "_log_softmax_backward_data": 35.899999999999636,
+        "AddmmBackward0": 65.80000000000177,
+        "mm": 556.9999999999998,
+        "sum": 121.90000000000077,
+        "view": 63.60000000000218,
+        "torch": 43.89999999999827,
+        "TBackward0": 11.900000000000091,
+        "ReluBackward0": 76.59999999999945,
+        "threshold_backward": 70.60000000000036
+      },
+      "top_counts": [
+        [
+          "aten.t.default",
+          28
+        ],
+        [
+          "aten.detach.default",
+          24
+        ],
+        [
+          "aten.mm.default",
+          10
+        ],
+        [
+          "aten.addmm.default",
+          6
+        ],
+        [
+          "aten.sum.dim_IntList",
+          6
+        ],
+        [
+          "aten.view.default",
+          6
+        ],
+        [
+          "aten.relu.default",
+          4
+        ],
+        [
+          "aten.threshold_backward.default",
+          4
+        ],
+        [
+          "aten.randint.low",
+          2
+        ],
+        [
+          "aten._log_softmax.default",
+          2
+        ],
+        [
+          "aten.nll_loss_forward.default",
+          2
+        ],
+        [
+          "aten.ones_like.default",
+          2
+        ],
+        [
+          "aten.nll_loss_backward.default",
+          2
+        ],
+        [
+          "aten._log_softmax_backward_data.default",
+          2
+        ]
+      ],
+      "top_self_cpu_us": [
+        [
+          "PythonDispatchMode",
+          2509.0999999999945
+        ],
+        [
+          "addmm",
+          1541.7999999999993
+        ],
+        [
+          "mm",
+          556.9999999999998
+        ],
+        [
+          "t",
+          235.60000000000153
+        ],
+        [
+          "relu",
+          227.90000000000026
+        ],
+        [
+          "autograd",
+          161.00000000000205
+        ],
+        [
+          "detach",
+          156.30000000000314
+        ],
+        [
+          "_log_softmax",
+          152.79999999999995
+        ],
+        [
+          "sum",
+          121.90000000000077
+        ],
+        [
+          "linear",
+          113.4000000000002
+        ],
+        [
+          "nll_loss_backward",
+          103.39999999999964
+        ],
+        [
+          "clamp_min",
+          78.6000000000002
+        ],
+        [
+          "ReluBackward0",
+          76.59999999999945
+        ],
+        [
+          "threshold_backward",
+          70.60000000000036
+        ],
+        [
+          "copy_",
+          67.79999999999927
+        ],
+        [
+          "AddmmBackward0",
+          65.80000000000177
+        ],
+        [
+          "view",
+          63.60000000000218
+        ],
+        [
+          "LogSoftmaxBackward0",
+          62.69999999999982
+        ],
+        [
+          "nll_loss_forward",
+          61.7999999999995
+        ],
+        [
+          "transpose",
+          60.99999999999659
+        ]
+      ],
+      "tier1_self_cpu_fraction": 0.11201990448136799
+    },
+    {
+      "model": "small CNN",
+      "training": true,
+      "total_dispatches": 86,
+      "distinct_ops": 21,
+      "by_tier": {
+        "tier1": 16,
+        "tier0": 22,
+        "long_tail": 48
+      },
+      "all_counts": {
+        "aten.convolution.default": 4,
+        "aten.relu.default": 4,
+        "aten.detach.default": 24,
+        "aten.max_pool2d_with_indices.default": 2,
+        "aten.mean.dim": 2,
+        "aten.view.default": 6,
+        "aten.t.default": 10,
+        "aten.addmm.default": 2,
+        "aten.randint.low": 2,
+        "aten._log_softmax.default": 2,
+        "aten.nll_loss_forward.default": 2,
+        "aten.ones_like.default": 2,
+        "aten.nll_loss_backward.default": 2,
+        "aten._log_softmax_backward_data.default": 2,
+        "aten.mm.default": 4,
+        "aten.sum.dim_IntList": 2,
+        "aten.expand.default": 2,
+        "aten.div.Scalar": 2,
+        "aten.threshold_backward.default": 4,
+        "aten.convolution_backward.default": 4,
+        "aten.max_pool2d_with_indices_backward.default": 2
+      },
+      "all_self_cpu_us": {
+        "conv2d": 51.59999999999951,
+        "convolution": 102.60000000000042,
+        "PythonDispatchMode": 1478.1999999999994,
+        "_convolution": 49.59999999999974,
+        "mkldnn_convolution": 1616.8999999999999,
+        "empty": 41.499999999999375,
+        "as_strided_": 36.00000000000057,
+        "resize_": 11.299999999999955,
+        "relu": 109.79999999999995,
+        "clamp_min": 57.299999999999955,
+        "detach": 74.19999999999936,
+        "max_pool2d": 20.5,
+        "max_pool2d_with_indices": 185.80000000000007,
+        "adaptive_avg_pool2d": 12.79999999999984,
+        "mean": 44.40000000000009,
+        "sum": 51.39999999999998,
+        "fill_": 55.600000000000364,
+        "div_": 42.30000000000018,
+        "to": 16.500000000000227,
+        "_to_copy": 23.799999999999272,
+        "empty_strided": 8.19999999999959,
+        "copy_": 29.000000000000455,
+        "flatten": 12.300000000000182,
+        "view": 39.80000000000018,
+        "linear": 8.0,
+        "t": 40.700000000000955,
+        "transpose": 14.399999999998954,
+        "as_strided": 13.200000000000728,
+        "addmm": 51.60000000000082,
+        "expand": 32.400000000000546,
+        "resolve_conj": 1.8999999999996362,
+        "randint": 15.200000000000273,
+        "random_": 8.299999999999727,
+        "cross_entropy_loss": 10.799999999999727,
+        "log_softmax": 8.599999999999909,
+        "_log_softmax": 49.100000000000136,
+        "nll_loss_nd": 5.7999999999999545,
+        "nll_loss": 4.899999999999864,
+        "nll_loss_forward": 19.700000000000273,
+        "ones_like": 10.999999999999545,
+        "empty_like": 4.100000000000364,
+        "autograd": 139.800000000002,
+        "NllLossBackward0": 7.100000000000364,
+        "nll_loss_backward": 24.899999999999636,
+        "zero_": 4.399999999999409,
+        "LogSoftmaxBackward0": 32.69999999999982,
+        "_log_softmax_backward_data": 14.200000000000045,
+        "AddmmBackward0": 17.099999999999227,
+        "mm": 39.20000000000073,
+        "torch": 35.90000000000009,
+        "TBackward0": 3.599999999999909,
+        "ViewBackward0": 10.399999999999864,
+        "reshape": 4.900000000000546,
+        "MeanBackward1": 13.200000000000045,
+        "div": 64.99999999999932,
+        "ReluBackward0": 76.69999999999959,
+        "threshold_backward": 99.59999999999968,
+        "ConvolutionBackward0": 21.5,
+        "convolution_backward": 2582.100000000001,
+        "MaxPool2DWithIndicesBackward0": 19.39999999999918,
+        "max_pool2d_with_indices_backward": 72.20000000000073
+      },
+      "top_counts": [
+        [
+          "aten.detach.default",
+          24
+        ],
+        [
+          "aten.t.default",
+          10
+        ],
+        [
+          "aten.view.default",
+          6
+        ],
+        [
+          "aten.convolution.default",
+          4
+        ],
+        [
+          "aten.relu.default",
+          4
+        ],
+        [
+          "aten.mm.default",
+          4
+        ],
+        [
+          "aten.threshold_backward.default",
+          4
+        ],
+        [
+          "aten.convolution_backward.default",
+          4
+        ],
+        [
+          "aten.max_pool2d_with_indices.default",
+          2
+        ],
+        [
+          "aten.mean.dim",
+          2
+        ],
+        [
+          "aten.addmm.default",
+          2
+        ],
+        [
+          "aten.randint.low",
+          2
+        ],
+        [
+          "aten._log_softmax.default",
+          2
+        ],
+        [
+          "aten.nll_loss_forward.default",
+          2
+        ],
+        [
+          "aten.ones_like.default",
+          2
+        ],
+        [
+          "aten.nll_loss_backward.default",
+          2
+        ],
+        [
+          "aten._log_softmax_backward_data.default",
+          2
+        ],
+        [
+          "aten.sum.dim_IntList",
+          2
+        ],
+        [
+          "aten.expand.default",
+          2
+        ],
+        [
+          "aten.div.Scalar",
+          2
+        ]
+      ],
+      "top_self_cpu_us": [
+        [
+          "convolution_backward",
+          2582.100000000001
+        ],
+        [
+          "mkldnn_convolution",
+          1616.8999999999999
+        ],
+        [
+          "PythonDispatchMode",
+          1478.1999999999994
+        ],
+        [
+          "max_pool2d_with_indices",
+          185.80000000000007
+        ],
+        [
+          "autograd",
+          139.800000000002
+        ],
+        [
+          "relu",
+          109.79999999999995
+        ],
+        [
+          "convolution",
+          102.60000000000042
+        ],
+        [
+          "threshold_backward",
+          99.59999999999968
+        ],
+        [
+          "ReluBackward0",
+          76.69999999999959
+        ],
+        [
+          "detach",
+          74.19999999999936
+        ],
+        [
+          "max_pool2d_with_indices_backward",
+          72.20000000000073
+        ],
+        [
+          "div",
+          64.99999999999932
+        ],
+        [
+          "clamp_min",
+          57.299999999999955
+        ],
+        [
+          "fill_",
+          55.600000000000364
+        ],
+        [
+          "addmm",
+          51.60000000000082
+        ],
+        [
+          "conv2d",
+          51.59999999999951
+        ],
+        [
+          "sum",
+          51.39999999999998
+        ],
+        [
+          "_convolution",
+          49.59999999999974
+        ],
+        [
+          "_log_softmax",
+          49.100000000000136
+        ],
+        [
+          "mean",
+          44.40000000000009
+        ]
+      ],
+      "tier1_self_cpu_fraction": 0.3597678916827854
+    },
+    {
+      "model": "tiny GPT",
+      "training": true,
+      "total_dispatches": 316,
+      "distinct_ops": 28,
+      "by_tier": {
+        "tier1": 36,
+        "long_tail": 112,
+        "tier0": 168
+      },
+      "all_counts": {
+        "aten.embedding.default": 4,
+        "aten.arange.default": 2,
+        "aten.add.Tensor": 14,
+        "aten.view.default": 66,
+        "aten.t.default": 50,
+        "aten.addmm.default": 10,
+        "aten.unsqueeze.default": 4,
+        "aten.transpose.int": 16,
+        "aten.squeeze.dim": 4,
+        "aten.clone.default": 16,
+        "aten.select.int": 6,
+        "aten._scaled_dot_product_flash_attention_for_cpu.default": 2,
+        "aten.detach.default": 40,
+        "aten.permute.default": 4,
+        "aten.native_layer_norm.default": 4,
+        "aten.relu.default": 2,
+        "aten.mean.default": 2,
+        "aten.ones_like.default": 2,
+        "aten.expand.default": 2,
+        "aten.div.Scalar": 2,
+        "aten.mm.default": 20,
+        "aten.sum.dim_IntList": 12,
+        "aten.native_layer_norm_backward.default": 4,
+        "aten.threshold_backward.default": 2,
+        "aten._scaled_dot_product_flash_attention_for_cpu_backward.default": 2,
+        "aten._unsafe_view.default": 14,
+        "aten.select_backward.default": 6,
+        "aten.embedding_dense_backward.default": 4
+      },
+      "all_self_cpu_us": {
+        "embedding": 138.89999999999986,
+        "PythonDispatchMode": 4230.800000000007,
+        "reshape": 100.40000000000089,
+        "view": 373.2999999999958,
+        "index_select": 85.00000000000006,
+        "empty": 86.09999999999962,
+        "select": 111.59999999999866,
+        "as_strided": 94.10000000000122,
+        "arange": 60.0,
+        "resize_": 11.100000000000762,
+        "add": 222.90000000000032,
+        "linear": 68.10000000000025,
+        "t": 169.69999999999868,
+        "transpose": 180.09999999999616,
+        "addmm": 348.70000000000107,
+        "expand": 30.600000000000477,
+        "copy_": 188.99999999999943,
+        "resolve_conj": 9.900000000000205,
+        "unflatten": 11.600000000000023,
+        "unsqueeze": 47.399999999999636,
+        "squeeze": 75.80000000000132,
+        "contiguous": 18.000000000001137,
+        "clone": 77.7000000000005,
+        "empty_like": 32.09999999999741,
+        "scaled_dot_product_attention": 39.99999999999977,
+        "_scaled_dot_product_flash_attention_for_cpu": 192.69999999999845,
+        "empty_strided": 13.300000000000864,
+        "detach": 103.5,
+        "permute": 41.499999999999545,
+        "dropout": 9.600000000000136,
+        "layer_norm": 22.700000000000273,
+        "native_layer_norm": 119.10000000000036,
+        "relu": 42.30000000000018,
+        "clamp_min": 15.800000000000182,
+        "to": 9.99999999999909,
+        "mean": 26.199999999999818,
+        "sum": 133.60000000000036,
+        "fill_": 23.699999999999818,
+        "div_": 17.200000000000273,
+        "_to_copy": 12.5,
+        "ones_like": 9.599999999999,
+        "autograd": 370.2000000000003,
+        "MeanBackward0": 10.700000000000273,
+        "div": 31.09999999999991,
+        "ViewBackward0": 32.19999999999982,
+        "AddmmBackward0": 70.50000000000091,
+        "mm": 272.99999999999864,
+        "torch": 81.30000000000246,
+        "TBackward0": 10.499999999999545,
+        "NativeLayerNormBackward0": 23.5,
+        "native_layer_norm_backward": 104.60000000000127,
+        "zero_": 25.099999999999,
+        "AddBackward0": 8.799999999998818,
+        "ReluBackward0": 32.69999999999982,
+        "threshold_backward": 26.000000000000455,
+        "PermuteBackward0": 8.300000000000182,
+        "ScaledDotProductFlashAttentionForCpuBackward0": 44.19999999999891,
+        "_scaled_dot_product_flash_attention_for_cpu_backward": 294.29999999999745,
+        "zeros": 32.400000000002365,
+        "_unsafe_view": 49.19999999999982,
+        "TransposeBackward0": 9.899999999998727,
+        "SelectBackward0": 16.0,
+        "select_backward": 44.80000000000382,
+        "CloneBackward0": 3.5,
+        "SqueezeBackward1": 7.900000000000546,
+        "UnsqueezeBackward0": 5.0,
+        "EmbeddingBackward0": 13.49999999999909,
+        "embedding_backward": 14.49999999999909,
+        "embedding_dense_backward": 48.100000000000364
+      },
+      "top_counts": [
+        [
+          "aten.view.default",
+          66
+        ],
+        [
+          "aten.t.default",
+          50
+        ],
+        [
+          "aten.detach.default",
+          40
+        ],
+        [
+          "aten.mm.default",
+          20
+        ],
+        [
+          "aten.transpose.int",
+          16
+        ],
+        [
+          "aten.clone.default",
+          16
+        ],
+        [
+          "aten.add.Tensor",
+          14
+        ],
+        [
+          "aten._unsafe_view.default",
+          14
+        ],
+        [
+          "aten.sum.dim_IntList",
+          12
+        ],
+        [
+          "aten.addmm.default",
+          10
+        ],
+        [
+          "aten.select.int",
+          6
+        ],
+        [
+          "aten.select_backward.default",
+          6
+        ],
+        [
+          "aten.embedding.default",
+          4
+        ],
+        [
+          "aten.unsqueeze.default",
+          4
+        ],
+        [
+          "aten.squeeze.dim",
+          4
+        ],
+        [
+          "aten.permute.default",
+          4
+        ],
+        [
+          "aten.native_layer_norm.default",
+          4
+        ],
+        [
+          "aten.native_layer_norm_backward.default",
+          4
+        ],
+        [
+          "aten.embedding_dense_backward.default",
+          4
+        ],
+        [
+          "aten.arange.default",
+          2
+        ]
+      ],
+      "top_self_cpu_us": [
+        [
+          "PythonDispatchMode",
+          4230.800000000007
+        ],
+        [
+          "view",
+          373.2999999999958
+        ],
+        [
+          "autograd",
+          370.2000000000003
+        ],
+        [
+          "addmm",
+          348.70000000000107
+        ],
+        [
+          "_scaled_dot_product_flash_attention_for_cpu_backward",
+          294.29999999999745
+        ],
+        [
+          "mm",
+          272.99999999999864
+        ],
+        [
+          "add",
+          222.90000000000032
+        ],
+        [
+          "_scaled_dot_product_flash_attention_for_cpu",
+          192.69999999999845
+        ],
+        [
+          "copy_",
+          188.99999999999943
+        ],
+        [
+          "transpose",
+          180.09999999999616
+        ],
+        [
+          "t",
+          169.69999999999868
+        ],
+        [
+          "embedding",
+          138.89999999999986
+        ],
+        [
+          "sum",
+          133.60000000000036
+        ],
+        [
+          "native_layer_norm",
+          119.10000000000036
+        ],
+        [
+          "select",
+          111.59999999999866
+        ],
+        [
+          "native_layer_norm_backward",
+          104.60000000000127
+        ],
+        [
+          "detach",
+          103.5
+        ],
+        [
+          "reshape",
+          100.40000000000089
+        ],
+        [
+          "as_strided",
+          94.10000000000122
+        ],
+        [
+          "empty",
+          86.09999999999962
+        ]
+      ],
+      "tier1_self_cpu_fraction": 0.07939341793934171
+    },
+    {
+      "model": "ViT-tiny style",
+      "training": true,
+      "total_dispatches": 328,
+      "distinct_ops": 32,
+      "by_tier": {
+        "tier1": 36,
+        "tier0": 170,
+        "long_tail": 122
+      },
+      "all_counts": {
+        "aten.convolution.default": 2,
+        "aten.view.default": 60,
+        "aten.transpose.int": 20,
+        "aten.expand.default": 2,
+        "aten.cat.default": 2,
+        "aten.t.default": 50,
+        "aten.addmm.default": 10,
+        "aten.unsqueeze.default": 4,
+        "aten.squeeze.dim": 4,
+        "aten.clone.default": 16,
+        "aten.select.int": 8,
+        "aten._scaled_dot_product_flash_attention_for_cpu.default": 2,
+        "aten.detach.default": 46,
+        "aten.permute.default": 4,
+        "aten.add.Tensor": 12,
+        "aten.native_layer_norm.default": 4,
+        "aten.relu.default": 2,
+        "aten.randint.low": 2,
+        "aten._log_softmax.default": 2,
+        "aten.nll_loss_forward.default": 2,
+        "aten.ones_like.default": 2,
+        "aten.nll_loss_backward.default": 2,
+        "aten._log_softmax_backward_data.default": 2,
+        "aten.mm.default": 20,
+        "aten.sum.dim_IntList": 12,
+        "aten.select_backward.default": 8,
+        "aten.native_layer_norm_backward.default": 4,
+        "aten.threshold_backward.default": 2,
+        "aten._scaled_dot_product_flash_attention_for_cpu_backward.default": 2,
+        "aten._unsafe_view.default": 14,
+        "aten.slice.Tensor": 4,
+        "aten.convolution_backward.default": 2
+      },
+      "all_self_cpu_us": {
+        "conv2d": 31.40000000000009,
+        "convolution": 68.69999999999993,
+        "PythonDispatchMode": 3096.799999999991,
+        "_convolution": 25.0,
+        "mkldnn_convolution": 794.6999999999999,
+        "empty": 98.79999999999717,
+        "as_strided_": 15.900000000000773,
+        "resize_": 8.300000000001319,
+        "flatten": 8.400000000000091,
+        "view": 291.7000000000005,
+        "transpose": 168.00000000000148,
+        "as_strided": 81.60000000000332,
+        "expand": 36.39999999999952,
+        "cat": 100.29999999999995,
+        "narrow": 29.399999999999977,
+        "slice": 46.60000000000207,
+        "linear": 44.799999999999955,
+        "t": 154.49999999999727,
+        "addmm": 299.9999999999998,
+        "copy_": 306.5000000000023,
+        "resolve_conj": 8.399999999998045,
+        "unflatten": 8.000000000000227,
+        "unsqueeze": 24.299999999999955,
+        "squeeze": 21.799999999999045,
+        "contiguous": 10.900000000000091,
+        "clone": 65.40000000000168,
+        "empty_like": 32.39999999999918,
+        "select": 63.59999999999991,
+        "scaled_dot_product_attention": 14.799999999999955,
+        "_scaled_dot_product_flash_attention_for_cpu": 178.29999999999973,
+        "empty_strided": 8.500000000000227,
+        "detach": 256.40000000000396,
+        "permute": 58.7999999999995,
+        "dropout": 6.499999999999545,
+        "add": 145.99999999999864,
+        "layer_norm": 13.599999999999909,
+        "native_layer_norm": 87.60000000000036,
+        "relu": 40.100000000000364,
+        "clamp_min": 18.899999999999636,
+        "randint": 15.099999999999909,
+        "random_": 8.300000000000182,
+        "cross_entropy_loss": 10.100000000000819,
+        "log_softmax": 8.199999999999363,
+        "to": 3.400000000000091,
+        "_log_softmax": 47.30000000000064,
+        "nll_loss_nd": 5.399999999999636,
+        "nll_loss": 5.099999999999909,
+        "nll_loss_forward": 18.699999999999818,
+        "ones_like": 10.100000000001273,
+        "fill_": 22.399999999997362,
+        "autograd": 362.0999999999981,
+        "NllLossBackward0": 7.199999999999818,
+        "nll_loss_backward": 28.199999999999818,
+        "zero_": 36.900000000001455,
+        "LogSoftmaxBackward0": 31.699999999999818,
+        "_log_softmax_backward_data": 15.299999999999727,
+        "AddmmBackward0": 64.60000000000127,
+        "mm": 328.4000000000028,
+        "sum": 122.00000000000546,
+        "torch": 70.10000000000036,
+        "TBackward0": 9.700000000001182,
+        "SelectBackward0": 9.899999999997817,
+        "select_backward": 59.39999999999918,
+        "zeros": 26.699999999998454,
+        "NativeLayerNormBackward0": 11.900000000000091,
+        "native_layer_norm_backward": 90.00000000000136,
+        "AddBackward0": 3.6999999999993634,
+        "ViewBackward0": 28.100000000002183,
+        "reshape": 81.699999999998,
+        "ReluBackward0": 28.300000000000182,
+        "threshold_backward": 27.200000000000273,
+        "PermuteBackward0": 2.900000000000091,
+        "ScaledDotProductFlashAttentionForCpuBackward0": 29.600000000000364,
+        "_scaled_dot_product_flash_attention_for_cpu_backward": 156.39999999999782,
+        "_unsafe_view": 41.49999999999909,
+        "TransposeBackward0": 9.100000000002183,
+        "CloneBackward0": 0.8999999999996362,
+        "SqueezeBackward1": 4.299999999999272,
+        "UnsqueezeBackward0": 2.8000000000010914,
+        "CatBackward0": 8.799999999999272,
+        "ExpandBackward0": 7.099999999999454,
+        "ConvolutionBackward0": 5.700000000000728,
+        "convolution_backward": 494.1999999999989
+      },
+      "top_counts": [
+        [
+          "aten.view.default",
+          60
+        ],
+        [
+          "aten.t.default",
+          50
+        ],
+        [
+          "aten.detach.default",
+          46
+        ],
+        [
+          "aten.transpose.int",
+          20
+        ],
+        [
+          "aten.mm.default",
+          20
+        ],
+        [
+          "aten.clone.default",
+          16
+        ],
+        [
+          "aten._unsafe_view.default",
+          14
+        ],
+        [
+          "aten.add.Tensor",
+          12
+        ],
+        [
+          "aten.sum.dim_IntList",
+          12
+        ],
+        [
+          "aten.addmm.default",
+          10
+        ],
+        [
+          "aten.select.int",
+          8
+        ],
+        [
+          "aten.select_backward.default",
+          8
+        ],
+        [
+          "aten.unsqueeze.default",
+          4
+        ],
+        [
+          "aten.squeeze.dim",
+          4
+        ],
+        [
+          "aten.permute.default",
+          4
+        ],
+        [
+          "aten.native_layer_norm.default",
+          4
+        ],
+        [
+          "aten.native_layer_norm_backward.default",
+          4
+        ],
+        [
+          "aten.slice.Tensor",
+          4
+        ],
+        [
+          "aten.convolution.default",
+          2
+        ],
+        [
+          "aten.expand.default",
+          2
+        ]
+      ],
+      "top_self_cpu_us": [
+        [
+          "PythonDispatchMode",
+          3096.799999999991
+        ],
+        [
+          "mkldnn_convolution",
+          794.6999999999999
+        ],
+        [
+          "convolution_backward",
+          494.1999999999989
+        ],
+        [
+          "autograd",
+          362.0999999999981
+        ],
+        [
+          "mm",
+          328.4000000000028
+        ],
+        [
+          "copy_",
+          306.5000000000023
+        ],
+        [
+          "addmm",
+          299.9999999999998
+        ],
+        [
+          "view",
+          291.7000000000005
+        ],
+        [
+          "detach",
+          256.40000000000396
+        ],
+        [
+          "_scaled_dot_product_flash_attention_for_cpu",
+          178.29999999999973
+        ],
+        [
+          "transpose",
+          168.00000000000148
+        ],
+        [
+          "_scaled_dot_product_flash_attention_for_cpu_backward",
+          156.39999999999782
+        ],
+        [
+          "t",
+          154.49999999999727
+        ],
+        [
+          "add",
+          145.99999999999864
+        ],
+        [
+          "sum",
+          122.00000000000546
+        ],
+        [
+          "cat",
+          100.29999999999995
+        ],
+        [
+          "empty",
+          98.79999999999717
+        ],
+        [
+          "native_layer_norm_backward",
+          90.00000000000136
+        ],
+        [
+          "native_layer_norm",
+          87.60000000000036
+        ],
+        [
+          "reshape",
+          81.699999999998
+        ]
+      ],
+      "tier1_self_cpu_fraction": 0.12605391673784064
+    },
+    {
+      "model": "GPT-2 small style",
+      "training": false,
+      "total_dispatches": 352,
+      "distinct_ops": 16,
+      "by_tier": {
+        "tier1": 20,
+        "long_tail": 60,
+        "tier0": 272
+      },
+      "all_counts": {
+        "aten.embedding.default": 4,
+        "aten.arange.default": 2,
+        "aten.add.Tensor": 18,
+        "aten.view.default": 124,
+        "aten.t.default": 34,
+        "aten.addmm.default": 34,
+        "aten.unsqueeze.default": 8,
+        "aten.transpose.int": 32,
+        "aten.squeeze.dim": 8,
+        "aten.clone.default": 8,
+        "aten.select.int": 24,
+        "aten._scaled_dot_product_flash_attention_for_cpu.default": 8,
+        "aten.detach.default": 16,
+        "aten.permute.default": 8,
+        "aten.native_layer_norm.default": 16,
+        "aten.relu.default": 8
+      },
+      "all_self_cpu_us": {
+        "embedding": 72.4,
+        "PythonDispatchMode": 3541.0000000000064,
+        "reshape": 6.499999999999972,
+        "view": 691.6999999999985,
+        "index_select": 58.69999999999993,
+        "empty": 112.20000000000152,
+        "select": 138.90000000000146,
+        "as_strided": 121.40000000000401,
+        "arange": 26.000000000000057,
+        "resize_": 2.5,
+        "add": 303.3999999999978,
+        "linear": 177.89999999999878,
+        "t": 190.79999999999842,
+        "transpose": 239.49999999999466,
+        "addmm": 1123.2999999999995,
+        "expand": 49.500000000005116,
+        "copy_": 450.59999999999957,
+        "resolve_conj": 10.699999999998226,
+        "unflatten": 29.89999999999975,
+        "unsqueeze": 57.6000000000015,
+        "squeeze": 47.89999999999907,
+        "contiguous": 18.70000000000175,
+        "clone": 52.999999999997726,
+        "empty_like": 31.600000000001046,
+        "scaled_dot_product_attention": 45.600000000000364,
+        "_scaled_dot_product_flash_attention_for_cpu": 592.4999999999978,
+        "empty_strided": 19.200000000000045,
+        "detach": 44.09999999999957,
+        "permute": 65.20000000000027,
+        "dropout": 24.2000000000005,
+        "layer_norm": 46.89999999999782,
+        "native_layer_norm": 385.60000000000264,
+        "relu": 164.50000000000114,
+        "clamp_min": 110.29999999999882
+      },
+      "top_counts": [
+        [
+          "aten.view.default",
+          124
+        ],
+        [
+          "aten.t.default",
+          34
+        ],
+        [
+          "aten.addmm.default",
+          34
+        ],
+        [
+          "aten.transpose.int",
+          32
+        ],
+        [
+          "aten.select.int",
+          24
+        ],
+        [
+          "aten.add.Tensor",
+          18
+        ],
+        [
+          "aten.detach.default",
+          16
+        ],
+        [
+          "aten.native_layer_norm.default",
+          16
+        ],
+        [
+          "aten.unsqueeze.default",
+          8
+        ],
+        [
+          "aten.squeeze.dim",
+          8
+        ],
+        [
+          "aten.clone.default",
+          8
+        ],
+        [
+          "aten._scaled_dot_product_flash_attention_for_cpu.default",
+          8
+        ],
+        [
+          "aten.permute.default",
+          8
+        ],
+        [
+          "aten.relu.default",
+          8
+        ],
+        [
+          "aten.embedding.default",
+          4
+        ],
+        [
+          "aten.arange.default",
+          2
+        ]
+      ],
+      "top_self_cpu_us": [
+        [
+          "PythonDispatchMode",
+          3541.0000000000064
+        ],
+        [
+          "addmm",
+          1123.2999999999995
+        ],
+        [
+          "view",
+          691.6999999999985
+        ],
+        [
+          "_scaled_dot_product_flash_attention_for_cpu",
+          592.4999999999978
+        ],
+        [
+          "copy_",
+          450.59999999999957
+        ],
+        [
+          "native_layer_norm",
+          385.60000000000264
+        ],
+        [
+          "add",
+          303.3999999999978
+        ],
+        [
+          "transpose",
+          239.49999999999466
+        ],
+        [
+          "t",
+          190.79999999999842
+        ],
+        [
+          "linear",
+          177.89999999999878
+        ],
+        [
+          "relu",
+          164.50000000000114
+        ],
+        [
+          "select",
+          138.90000000000146
+        ],
+        [
+          "as_strided",
+          121.40000000000401
+        ],
+        [
+          "empty",
+          112.20000000000152
+        ],
+        [
+          "clamp_min",
+          110.29999999999882
+        ],
+        [
+          "embedding",
+          72.4
+        ],
+        [
+          "permute",
+          65.20000000000027
+        ],
+        [
+          "index_select",
+          58.69999999999993
+        ],
+        [
+          "unsqueeze",
+          57.6000000000015
+        ],
+        [
+          "clone",
+          52.999999999997726
+        ]
+      ],
+      "tier1_self_cpu_fraction": 0.05562305330358554
+    },
+    {
+      "model": "UNet style",
+      "training": true,
+      "total_dispatches": 96,
+      "distinct_ops": 12,
+      "by_tier": {
+        "tier1": 20,
+        "tier0": 28,
+        "long_tail": 48
+      },
+      "all_counts": {
+        "aten.convolution.default": 10,
+        "aten.relu.default": 8,
+        "aten.detach.default": 36,
+        "aten.max_pool2d_with_indices.default": 2,
+        "aten.add.Tensor": 12,
+        "aten.mean.default": 2,
+        "aten.ones_like.default": 2,
+        "aten.expand.default": 2,
+        "aten.div.Scalar": 2,
+        "aten.convolution_backward.default": 10,
+        "aten.threshold_backward.default": 8,
+        "aten.max_pool2d_with_indices_backward.default": 2
+      },
+      "all_self_cpu_us": {
+        "conv2d": 43.79999999999956,
+        "convolution": 159.10000000000036,
+        "PythonDispatchMode": 1596.0000000000005,
+        "_convolution": 2005.6999999999991,
+        "mkldnn_convolution": 1631.999999999999,
+        "empty": 106.30000000000325,
+        "as_strided_": 74.19999999999874,
+        "resize_": 18.900000000000716,
+        "relu": 200.39999999999975,
+        "clamp_min": 88.79999999999995,
+        "detach": 116.60000000000093,
+        "max_pool2d": 9.600000000000023,
+        "max_pool2d_with_indices": 105.0,
+        "conv_transpose2d": 22.5,
+        "contiguous": 7.400000000000091,
+        "clone": 14.099999999999682,
+        "empty_like": 13.300000000001091,
+        "copy_": 86.10000000000105,
+        "add": 203.30000000000155,
+        "to": 13.199999999999818,
+        "mean": 58.300000000000864,
+        "sum": 29.299999999999955,
+        "as_strided": 9.500000000000682,
+        "fill_": 3.299999999999045,
+        "div_": 99.099999999999,
+        "_to_copy": 20.100000000000136,
+        "empty_strided": 11.699999999998909,
+        "ones_like": 13.50000000000091,
+        "autograd": 194.39999999999554,
+        "MeanBackward0": 11.899999999999636,
+        "expand": 28.09999999999968,
+        "div": 41.60000000000082,
+        "ConvolutionBackward0": 32.5,
+        "convolution_backward": 5520.599999999999,
+        "torch": 59.900000000001,
+        "AddBackward0": 6.500000000000455,
+        "ReluBackward0": 164.59999999999764,
+        "threshold_backward": 107.20000000000027,
+        "MaxPool2DWithIndicesBackward0": 6.500000000000455,
+        "max_pool2d_with_indices_backward": 36.700000000003,
+        "zero_": 4.899999999998272
+      },
+      "top_counts": [
+        [
+          "aten.detach.default",
+          36
+        ],
+        [
+          "aten.add.Tensor",
+          12
+        ],
+        [
+          "aten.convolution.default",
+          10
+        ],
+        [
+          "aten.convolution_backward.default",
+          10
+        ],
+        [
+          "aten.relu.default",
+          8
+        ],
+        [
+          "aten.threshold_backward.default",
+          8
+        ],
+        [
+          "aten.max_pool2d_with_indices.default",
+          2
+        ],
+        [
+          "aten.mean.default",
+          2
+        ],
+        [
+          "aten.ones_like.default",
+          2
+        ],
+        [
+          "aten.expand.default",
+          2
+        ],
+        [
+          "aten.div.Scalar",
+          2
+        ],
+        [
+          "aten.max_pool2d_with_indices_backward.default",
+          2
+        ]
+      ],
+      "top_self_cpu_us": [
+        [
+          "convolution_backward",
+          5520.599999999999
+        ],
+        [
+          "_convolution",
+          2005.6999999999991
+        ],
+        [
+          "mkldnn_convolution",
+          1631.999999999999
+        ],
+        [
+          "PythonDispatchMode",
+          1596.0000000000005
+        ],
+        [
+          "add",
+          203.30000000000155
+        ],
+        [
+          "relu",
+          200.39999999999975
+        ],
+        [
+          "autograd",
+          194.39999999999554
+        ],
+        [
+          "ReluBackward0",
+          164.59999999999764
+        ],
+        [
+          "convolution",
+          159.10000000000036
+        ],
+        [
+          "detach",
+          116.60000000000093
+        ],
+        [
+          "threshold_backward",
+          107.20000000000027
+        ],
+        [
+          "empty",
+          106.30000000000325
+        ],
+        [
+          "max_pool2d_with_indices",
+          105.0
+        ],
+        [
+          "div_",
+          99.099999999999
+        ],
+        [
+          "clamp_min",
+          88.79999999999995
+        ],
+        [
+          "copy_",
+          86.10000000000105
+        ],
+        [
+          "as_strided_",
+          74.19999999999874
+        ],
+        [
+          "torch",
+          59.900000000001
+        ],
+        [
+          "mean",
+          58.300000000000864
+        ],
+        [
+          "conv2d",
+          43.79999999999956
+        ]
+      ],
+      "tier1_self_cpu_fraction": 0.43769121103533304
+    }
+  ]
+}

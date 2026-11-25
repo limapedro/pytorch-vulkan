@@ -1,0 +1,215 @@
+version: 1
+note: >-
+  Machine-readable source of truth for docs/PARITY.md. Status values: roadmap,
+  in progress, forward done, forward+backward done, optimized. Never hand-edit
+  docs/PARITY.md; edit this file and run tools/generate_parity_doc.py.
+ops:
+  - name: empty
+    overloads: [empty, empty_like]
+    tier: 0
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: copy_
+    overloads: [copy_]
+    tier: 0
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: fill_
+    overloads: [fill_, zero_]
+    tier: 0
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: add
+    overloads: [add, add_, add.out]
+    tier: 0
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: mul
+    overloads: [mul, mul_]
+    tier: 0
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: unary_elementwise
+    overloads: [neg, abs, exp, log, sqrt, sigmoid, relu, tanh]
+    tier: 0
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: binary_broadcast
+    overloads: [sub, div, pow, maximum, minimum]
+    tier: 0
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: sum
+    overloads: [sum, sum.dim_IntList]
+    tier: 0
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: view
+    overloads: [view, reshape, transpose, permute, squeeze, unsqueeze]
+    tier: 0
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: gather_scatter_index
+    overloads: [index_select, gather, scatter_add, index_add]
+    tier: 0
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: mm_addmm
+    overloads: [mm, bmm, addmm]
+    tier: 1
+    dtypes: [float32, float16]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: conv2d
+    overloads: [convolution, cudnn_convolution]
+    tier: 1
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: softmax
+    overloads: [softmax, log_softmax]
+    tier: 1
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: layer_norm
+    overloads: [native_layer_norm, layer_norm_backward]
+    tier: 1
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: batch_norm
+    overloads: [native_batch_norm, native_batch_norm_backward]
+    tier: 1
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: embedding
+    overloads: [embedding, embedding_dense_backward]
+    tier: 1
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: scaled_dot_product_attention
+    overloads: [_scaled_dot_product_flash_attention, _scaled_dot_product_attention]
+    tier: 1
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: cross_entropy
+    overloads: [cross_entropy, log_softmax, nll_loss]
+    tier: 1
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: adamw
+    overloads: [adamw, adam, sgd, _foreach_adamw]
+    tier: 1
+    dtypes: [float32]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: long_tail
+    overloads: [TBD by op census]
+    tier: 2
+    dtypes: [TBD]
+    status: roadmap
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+layers:
+  - name: MLP
+    status: roadmap
+    fallback_count: null
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: small CNN
+    status: roadmap
+    fallback_count: null
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: ResNet-18
+    status: roadmap
+    fallback_count: null
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: ResNet-50
+    status: roadmap
+    fallback_count: null
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: tiny GPT (train + inference)
+    status: roadmap
+    fallback_count: null
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: ViT-tiny
+    status: roadmap
+    fallback_count: null
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: GPT-2 small inference
+    status: roadmap
+    fallback_count: null
+    parity: null
+    perf_ratio_cuda: null
+    pr: null
+  - name: UNet-style
+    status: roadmap
+    fallback_count: null
+    parity: null
+    perf_ratio_cuda: null
+    pr: null

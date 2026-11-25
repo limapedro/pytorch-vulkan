@@ -1,0 +1,58 @@
+{
+  "torch_version": "2.15.0a0+git8f2938f",
+  "device": "cpu",
+  "rtol": 1e-05,
+  "atol": 1e-06,
+  "rows": [
+    {
+      "op": "input_a",
+      "max_abs_diff": 0.0,
+      "dtype": "torch.float32"
+    },
+    {
+      "op": "input_b",
+      "max_abs_diff": 0.0,
+      "dtype": "torch.float32"
+    },
+    {
+      "op": "input_x",
+      "max_abs_diff": 0.0,
+      "dtype": "torch.float32"
+    },
+    {
+      "op": "input_w1",
+      "max_abs_diff": 0.0,
+      "dtype": "torch.float32"
+    },
+    {
+      "op": "input_w2",
+      "max_abs_diff": 0.0,
+      "dtype": "torch.float32"
+    },
+    {
+      "op": "input_bias",
+      "max_abs_diff": 0.0,
+      "dtype": "torch.float32"
+    },
+    {
+      "op": "ref_add",
+      "max_abs_diff": 0.0,
+      "dtype": "torch.float32"
+    },
+    {
+      "op": "ref_mm",
+      "max_abs_diff": 0.0,
+      "dtype": "torch.float32"
+    },
+    {
+      "op": "ref_addmm",
+      "max_abs_diff": 0.0,
+      "dtype": "torch.float32"
+    },
+    {
+      "op": "ref_mlp",
+      "max_abs_diff": 0.0,
+      "dtype": "torch.float32"
+    }
+  ]
+}

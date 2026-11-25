@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-11-25T05:17:38Z",
+  "tolerance": {
+    "atol": 1e-05,
+    "rtol": 0.0001
+  },
+  "torch_version": "2.15.0+cu132",
+  "python_executable": "E:\\__PROJECTS__\\pytorch-vulkan\\agent_space\\baseline\\venv312\\Scripts\\python.exe",
+  "runs": {
+    "py310_dml": {
+      "add": {
+        "max_abs_diff": 0.0,
+        "allclose": true,
+        "shape": [
+          2,
+          3
+        ]
+      },
+      "mm": {
+        "max_abs_diff": 1.1920928955078125e-07,
+        "allclose": true,
+        "shape": [
+          2,
+          4
+        ]
+      },
+      "addmm": {
+        "max_abs_diff": 1.1920928955078125e-07,
+        "allclose": true,
+        "shape": [
+          2,
+          4
+        ]
+      },
+      "mlp": {
+        "max_abs_diff": 1.6763806343078613e-07,
+        "allclose": true,
+        "shape": [
+          2,
+          2
+        ]
+      }
+    },
+    "py312_cpu": {
+      "add": {
+        "max_abs_diff": 0.0,
+        "allclose": true,
+        "shape": [
+          2,
+          3
+        ]
+      },
+      "mm": {
+        "max_abs_diff": 0.0,
+        "allclose": true,
+        "shape": [
+          2,
+          4
+        ]
+      },
+      "addmm": {
+        "max_abs_diff": 0.0,
+        "allclose": true,
+        "shape": [
+          2,
+          4
+        ]
+      },
+      "mlp": {
+        "max_abs_diff": 0.0,
+        "allclose": true,
+        "shape": [
+          2,
+          2
+        ]
+      }
+    },
+    "py312_cuda": {
+      "add": {
+        "max_abs_diff": 0.0,
+        "allclose": true,
+        "shape": [
+          2,
+          3
+        ]
+      },
+      "mm": {
+        "max_abs_diff": 0.0,
+        "allclose": true,
+        "shape": [
+          2,
+          4
+        ]
+      },
+      "addmm": {
+        "max_abs_diff": 0.0,
+        "allclose": true,
+        "shape": [
+          2,
+          4
+        ]
+      },
+      "mlp": {
+        "max_abs_diff": 0.0,
+        "allclose": true,
+        "shape": [
+          2,
+          2
+        ]
+      }
+    }
+  }
+}
