@@ -47,7 +47,8 @@ Allocation* createBuffer(std::uint64_t bytes) {
       0,
       bytes,
       VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT |
-          VK_BUFFER_USAGE_TRANSFER_DST_BIT,
+          VK_BUFFER_USAGE_TRANSFER_DST_BIT |
+          VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT,
       VK_SHARING_MODE_EXCLUSIVE,
       0,
       nullptr};
@@ -63,9 +64,14 @@ Allocation* createBuffer(std::uint64_t bytes) {
       runtime.physicalDevice(),
       requirements.memoryTypeBits,
       VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+  VkMemoryAllocateFlagsInfo flags_info{
+      VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO,
+      nullptr,
+      VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT,
+      0};
   VkMemoryAllocateInfo allocate_info{
       VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO,
-      nullptr,
+      &flags_info,
       requirements.size,
       memory_type};
   result = vkAllocateMemory(runtime.device(), &allocate_info, nullptr, &allocation->memory);
@@ -92,7 +98,7 @@ void destroyBuffer(Allocation* allocation) {
   delete allocation;
 }
 
-void submitAndWait() {
+void submitAndWaitImpl() {
   auto& runtime = Runtime::get();
   auto buffer = runtime.commandBuffer();
   VkSubmitInfo submit_info{
@@ -160,6 +166,10 @@ void destroyStaging(VkBuffer buffer, VkDeviceMemory memory) {
 }
 
 } // namespace
+
+void submitAndWait() {
+  submitAndWaitImpl();
+}
 
 Allocation* allocateBuffer(std::uint64_t bytes) {
   const auto class_id = sizeClass(bytes);

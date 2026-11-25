@@ -6,7 +6,7 @@ committed roofline result (ratio to measured peak, not spec sheet).
 | Kernel | Op(s) | Strategy | Tuning parameters | Dtypes | Roofline result | PR |
 |---|---|---|---|---|---|---|
 | fill/zero | `fill_.Scalar`, `zero_` | `vkCmdFillBuffer` with float32 bit pattern | buffer offset alignment, fill width | fp32, int32 | not measured | - |
-| add | `add.out`, `add.Tensor` | **not implemented**; counted CPU fallback | - | - | no claim | - |
+| add | `add.out`, `add.Tensor` | GLSL compute shader, BDA buffer refs in push constants, empty descriptor layout, 64-thread workgroup | workgroup size (64), alpha from push constants | fp32 | exact parity, no timing yet | - |
 
 ## Design constraints
 

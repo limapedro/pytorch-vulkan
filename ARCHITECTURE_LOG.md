@@ -28,6 +28,8 @@ changing it.
 
 | D014 | 2026-11-25 | Use buffer device addresses as `DataPtr` pointers and a mutex-protected 4096 B size-class reuse pool for allocator v1; no suballocation/coalescing until Phase 4. | BDA is enabled and queried on the dev card; it avoids per-op descriptors and gives a valid device pointer for `DataPtr`. Correctness first; fragmentation work is a later experiment. | exp_006/007; `kaminari/csrc/Allocator.cpp`, `VulkanMemory.cpp`. | locked (v1) |
 
+| D015 | 2026-11-25 | Use BDA buffer references in push constants with an empty descriptor layout for the first kernels, and keep Vulkan handles alive for process lifetime. | Avoids per-op descriptor allocation; validation caught a destroyed layout and an atexit teardown crash, so process-lifetime ownership is the safe v1 policy. | exp_008; `kaminari/csrc/Kernel.cpp`, `Runtime.cpp`. | locked (v1) |
+
 ## Pending decisions
 
 - Two-venv comparison strategy is locked as D009 but marked provisional on H1 (coexistence in one process was not directly tested).

@@ -1,5 +1,6 @@
 #include "Runtime.h"
 
+#include <cstdio>
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
@@ -22,6 +23,15 @@ std::vector<char> readCacheFile(const std::filesystem::path& path) {
   in.seekg(0);
   in.read(data.data(), size);
   return data;
+}
+
+VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(
+    VkDebugUtilsMessageSeverityFlagBitsEXT,
+    VkDebugUtilsMessageTypeFlagsEXT,
+    const VkDebugUtilsMessengerCallbackDataEXT* data,
+    void*) {
+  std::fprintf(stderr, "[kaminari vulkan] %s\n", data->pMessage);
+  return VK_FALSE;
 }
 
 void writeCacheFile(
@@ -47,17 +57,38 @@ Runtime::Runtime() {
       "kaminari",
       1,
       VK_API_VERSION_1_3};
+  const bool validate = std::getenv("KAMINARI_VALIDATE") != nullptr;
+  const char* const validation_layer = "VK_LAYER_KHRONOS_validation";
+  const char* const debug_extension = VK_EXT_DEBUG_UTILS_EXTENSION_NAME;
+  VkDebugUtilsMessengerCreateInfoEXT messenger_info{
+      VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
+      nullptr,
+      0,
+      VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT |
+          VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT,
+      VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT |
+          VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT |
+          VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT,
+      debugCallback,
+      nullptr};
   VkInstanceCreateInfo instance_info{
       VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO,
-      nullptr,
+      validate ? &messenger_info : nullptr,
       0,
       &app,
-      0,
-      nullptr,
-      0,
-      nullptr};
+      validate ? 1u : 0u,
+      validate ? &validation_layer : nullptr,
+      validate ? 1u : 0u,
+      validate ? &debug_extension : nullptr};
   if (vkCreateInstance(&instance_info, nullptr, &instance_) != VK_SUCCESS) {
     return;
+  }
+  if (validate) {
+    auto create_messenger = reinterpret_cast<PFN_vkCreateDebugUtilsMessengerEXT>(
+        vkGetInstanceProcAddr(instance_, "vkCreateDebugUtilsMessengerEXT"));
+    if (create_messenger) {
+      create_messenger(instance_, &messenger_info, nullptr, &messenger_);
+    }
   }
 
   std::uint32_t physical_count = 0;
@@ -241,9 +272,12 @@ Runtime::Runtime() {
 }
 
 Runtime::~Runtime() {
-  if (!ready_) {
-    return;
-  }
+  // Intentionally leak Vulkan handles: validation-layer static state is destroyed
+  // before atexit, so issuing Vulkan calls here can crash the process. The pipeline
+  // cache is flushed by an explicit call instead (Phase 4).
+  (void)cache_file_;
+  return;
+#if 0
   std::size_t cache_size = 0;
   vkGetPipelineCacheData(device_, pipeline_cache_, &cache_size, nullptr);
   std::vector<char> cache_data(cache_size);
@@ -256,7 +290,15 @@ Runtime::~Runtime() {
   vkDestroyFence(device_, fence_, nullptr);
   vkDestroyCommandPool(device_, command_pool_, nullptr);
   vkDestroyDevice(device_, nullptr);
+  if (messenger_ != VK_NULL_HANDLE) {
+    auto destroy_messenger = reinterpret_cast<PFN_vkDestroyDebugUtilsMessengerEXT>(
+        vkGetInstanceProcAddr(instance_, "vkDestroyDebugUtilsMessengerEXT"));
+    if (destroy_messenger) {
+      destroy_messenger(instance_, messenger_, nullptr);
+    }
+  }
   vkDestroyInstance(instance_, nullptr);
+#endif
 }
 
 Runtime& Runtime::get() {

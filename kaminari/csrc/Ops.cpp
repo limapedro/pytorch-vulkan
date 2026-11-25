@@ -1,5 +1,6 @@
 #include "Ops.h"
 
+#include "Kernel.h"
 #include "VulkanMemory.h"
 
 #include <ATen/EmptyTensor.h>
@@ -170,6 +171,39 @@ at::Tensor& zero_(at::Tensor& self) {
   return fillScalar(self, 0);
 }
 
+at::Tensor& addOut(
+    const at::Tensor& self,
+    const at::Tensor& other,
+    const at::Scalar& alpha,
+    at::Tensor& out) {
+  TORCH_CHECK(
+      self.is_contiguous() && other.is_contiguous() && out.is_contiguous(),
+      "kaminari add supports contiguous tensors only");
+  TORCH_CHECK(
+      self.sizes() == other.sizes() && self.sizes() == out.sizes(),
+      "kaminari add requires equal shapes");
+  TORCH_CHECK(
+      self.scalar_type() == c10::ScalarType::Float &&
+          other.scalar_type() == c10::ScalarType::Float &&
+          out.scalar_type() == c10::ScalarType::Float,
+      "kaminari add supports float32 only");
+  auto* a = allocationFromAddress(self.data_ptr());
+  auto* b = allocationFromAddress(other.data_ptr());
+  auto* result = allocationFromAddress(out.data_ptr());
+  TORCH_CHECK(a && b && result, "unknown kaminari buffer in add");
+  addBuffers(a, b, result, static_cast<std::uint64_t>(self.numel()), alpha.to<float>());
+  return out;
+}
+
+at::Tensor addTensor(
+    const at::Tensor& self,
+    const at::Tensor& other,
+    const at::Scalar& alpha) {
+  auto out = at::empty_like(self);
+  addOut(self, other, alpha, out);
+  return out;
+}
+
 void cpuFallback(const c10::OperatorHandle& op, torch::jit::Stack* stack) {
   g_fallback_count.fetch_add(1, std::memory_order_relaxed);
   TORCH_WARN_ONCE(
@@ -200,6 +234,8 @@ TORCH_LIBRARY_IMPL(aten, PrivateUse1, m) {
   m.impl("_local_scalar_dense", kaminari::localScalarDense);
   m.impl("fill_.Scalar", kaminari::fillScalar);
   m.impl("zero_", kaminari::zero_);
+  m.impl("add.out", kaminari::addOut);
+  m.impl("add.Tensor", kaminari::addTensor);
 }
 
 TORCH_LIBRARY_IMPL(_, PrivateUse1, m) {

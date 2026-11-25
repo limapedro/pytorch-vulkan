@@ -29,10 +29,10 @@ class TestKaminariMemory(TestCase):
         a = torch.full((4,), 1.0, device="kaminari")
         b = torch.full((4,), 2.0, device="kaminari")
         before = torch.kaminari._C._fallback_count()
-        c = a + b
+        c = a - b
         after = torch.kaminari._C._fallback_count()
         self.assertGreater(after, before)
-        self.assertEqual(c.cpu(), torch.full((4,), 3.0))
+        self.assertEqual(c.cpu(), torch.full((4,), -1.0))
 
 
 if __name__ == "__main__":

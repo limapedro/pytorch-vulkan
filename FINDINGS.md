@@ -12,5 +12,6 @@ Index of experimental results. Raw numbers live under `experiments/exp_NNN/` and
 | [exp_005](experiments/exp_005_device_registration/FINDINGS.md) | PrivateUse1 device registered out-of-tree with zero core edits; autoload and 3/3 smoke tests pass. | `kaminari/tests/test_smoke.py` |
 | [exp_006](experiments/exp_006_vulkan_runtime/FINDINGS.md) | Vulkan context created; queried limits match vulkaninfo; BDA/timeline/fp16/int8 enabled; 2/2 runtime tests. | `benchmarks/kaminari/results/2026-11-25_vulkan_capabilities.json` |
 | [exp_007](experiments/exp_007_memory_ops/FINDINGS.md) | Allocator + empty/copy/fill/zero/item exact on fp32 smoke; add still counted CPU fallback; 9/9 local tests. | `kaminari/tests/test_memory.py` |
+| [exp_008](experiments/exp_008_add_kernel/FINDINGS.md) | Vulkan add shader exact vs CPU, zero fallback for add; validation caught and fixed two driver bugs; 11/11 tests. | `kaminari/tests/test_add.py` |
 
 Negative results are first-class outputs and are kept here permanently.

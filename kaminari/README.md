@@ -15,6 +15,7 @@ Self-contained PyTorch Vulkan backend. All code here is out-of-tree; no files un
 
 Device registration, Vulkan runtime, allocator v1 and first memory ops.
 `torch.empty(..., device="kaminari")`, H2D/D2H `copy_`, `fill_`/`zero_`, `item()`,
-`view`/`as_strided` and a counted CPU fallback all work. `add` still uses that fallback;
-a Vulkan `add` shader is the next PR. `_C._device_info()` returns live GPU limits and
-`_C._synchronize_vulkan()` waits for the compute queue. 9/9 local tests pass.
+`view`/`as_strided`, a Vulkan `add` shader and a counted CPU fallback for everything else
+all work. `_C._device_info()` returns live GPU limits and `_C._synchronize_vulkan()`
+waits for the compute queue. Validation is available with `KAMINARI_VALIDATE=1`.
+11/11 local tests pass.

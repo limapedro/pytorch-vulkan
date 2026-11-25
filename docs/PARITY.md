@@ -7,7 +7,7 @@ Status legend: roadmap / in progress / forward done / forward+backward done / op
 Everything here is generated from a machine-readable manifest so the table cannot
 rot. A blank parity result means **not measured**, never 'pass'.
 
-Summary (ops): roadmap=16, in progress=0, forward done=4, forward+backward done=0, optimized=0.
+Summary (ops): roadmap=15, in progress=0, forward done=5, forward+backward done=0, optimized=0.
 
 ## Ops
 
@@ -16,7 +16,7 @@ Summary (ops): roadmap=16, in progress=0, forward done=4, forward+backward done=
 | empty | empty, empty_like | 0 | float32 | forward done | exact fp32 smoke (kaminari/tests/test_memory.py) | - | #15 |
 | copy_ | copy_ | 0 | float32 | forward done | exact fp32 H2D/D2H round-trip (test_memory.py) | - | #15 |
 | fill_ | fill_, zero_ | 0 | float32 | forward done | exact fp32 fill/zero (test_memory.py) | - | #15 |
-| add | add, add_, add.out | 0 | float32 | roadmap | - | - | - |
+| add | add, add_, add.out | 0 | float32 | forward done | exact fp32 match vs CPU, 4 and 64 elements (kaminari/tests/test_add.py) | - | #16 |
 | mul | mul, mul_ | 0 | float32 | roadmap | - | - | - |
 | unary_elementwise | neg, abs, exp, log, sqrt, sigmoid, relu, tanh | 0 | float32 | roadmap | - | - | - |
 | binary_broadcast | sub, div, pow, maximum, minimum | 0 | float32 | roadmap | - | - | - |
