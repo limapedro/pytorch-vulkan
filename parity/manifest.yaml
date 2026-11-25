@@ -8,26 +8,26 @@ ops:
     overloads: [empty, empty_like]
     tier: 0
     dtypes: [float32]
-    status: roadmap
-    parity: null
+    status: forward done
+    parity: "exact fp32 smoke (kaminari/tests/test_memory.py)"
     perf_ratio_cuda: null
-    pr: null
+    pr: "#15"
   - name: copy_
     overloads: [copy_]
     tier: 0
     dtypes: [float32]
-    status: roadmap
-    parity: null
+    status: forward done
+    parity: "exact fp32 H2D/D2H round-trip (test_memory.py)"
     perf_ratio_cuda: null
-    pr: null
+    pr: "#15"
   - name: fill_
     overloads: [fill_, zero_]
     tier: 0
     dtypes: [float32]
-    status: roadmap
-    parity: null
+    status: forward done
+    parity: "exact fp32 fill/zero (test_memory.py)"
     perf_ratio_cuda: null
-    pr: null
+    pr: "#15"
   - name: add
     overloads: [add, add_, add.out]
     tier: 0
@@ -72,10 +72,10 @@ ops:
     overloads: [view, reshape, transpose, permute, squeeze, unsqueeze]
     tier: 0
     dtypes: [float32]
-    status: roadmap
-    parity: null
+    status: forward done
+    parity: "zero-copy view contiguous smoke (test_memory.py); full family pending"
     perf_ratio_cuda: null
-    pr: null
+    pr: "#15"
   - name: gather_scatter_index
     overloads: [index_select, gather, scatter_add, index_add]
     tier: 0

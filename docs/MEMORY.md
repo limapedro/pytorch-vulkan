@@ -1,20 +1,31 @@
 # MEMORY
 
-Allocator design and fragmentation stats. Design only until Phase 1; no allocator exists
-yet, so there are no fragmentation numbers.
+Allocator design and fragmentation stats.
 
-## Planned design
+## v1 (implemented, exp_007)
 
-- Caching allocator in the spirit of the CUDA one: size-class pools, block splitting
-  and coalescing, a few large `vkAllocateMemory` calls.
-- Device-local heap 0 (5.83 GiB, budget 5.08 GiB) for tensors; host heap 1 for staging;
-  small device-local heap 2 noted but not assumed usable for large tensors.
-- Compatible APIs planned: `memory_allocated`, `memory_reserved`,
-  `max_memory_allocated`, `empty_cache`, `memory_stats`, with actionable OOM errors.
-- Track read/write hazards per buffer to place minimal barriers for lazy submission.
+- `REGISTER_ALLOCATOR(c10::DeviceType::PrivateUse1, ...)` installs a `c10::Allocator`.
+  Each allocation is a Vulkan `VkBuffer` bound to its own device-local `VkDeviceMemory`;
+  the `DataPtr` stores the buffer device address as the data pointer and an
+  `Allocation*` as deleter context.
+- A mutex-protected size-class pool rounds requests up to 4096 B and reuses freed
+  buffers by class. This is intentionally simple: **no suballocation, splitting,
+  coalescing or `empty_cache` yet**. One `vkAllocateMemory` per cached buffer, and freed
+  buffers are retained for the life of the process.
+- Host staging uses a separate host-visible/coherent buffer per copy, destroyed after
+  the synchronous transfer.
+- `copy_data` resolves device addresses back to allocations and issues a
+  `vkCmdCopyBuffer` on the compute queue.
+- Compatible APIs (`memory_allocated`, `empty_cache`, `memory_stats`) are **not** exposed
+  yet; Phase 4 work.
 
-## Measurements to record here
+## Measured behavior
 
-- Fragmentation ratio after a model training loop.
-- Number of `vkAllocateMemory` calls vs number of allocations.
-- Peak reserved vs allocated VRAM; OOM behavior at the 6 GB limit.
+Smoke tests (exp_007): H2D/D2H round-trip, `fill_`, `zero_`, `item()` and views all exact
+on fp32 4-element tensors. 9/9 local tests pass. No allocator timings, peak-VRAM or
+fragmentation numbers have been taken, so none are claimed.
+
+## Planned v2 (Phase 4)
+
+Few large `vkAllocateMemory` calls with block splitting and coalescing, stream-aware
+reuse, fragmentation stats, OOM errors, and the CUDA-compatible memory API surface.

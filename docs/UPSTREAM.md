@@ -19,6 +19,9 @@ Base: upstream tag `v2.15.0`. Fork default: `stable/v2.15.0`. Decision D007 in
 | Python bindings | `torch/csrc/Module.cpp` | none; extension supplies its own pybind module | no core edit |
 | Extension build hook | `kaminari/CMakeLists.txt`, `kaminari/setup.py` | standalone CMake/pybind11 build against installed Torch; `torch.backends` autoload entry point | self-contained tree |
 | Python device module | `kaminari/torch_kaminari/` | registers `torch.kaminari`, generates tensor/storage methods | self-contained tree |
+| Allocator and ATen ops | `kaminari/csrc/Allocator.cpp`, `VulkanMemory.cpp`, `Ops.cpp` | `REGISTER_ALLOCATOR` + `TORCH_LIBRARY_IMPL(aten/_, PrivateUse1, ...)` runtime registration | self-contained tree |
+
+exp_007 confirmed the core diff remains empty after adding the allocator and first ops.
 
 Validated by exp_005: `git diff --stat stable/v2.15.0 -- c10 aten torch torchgen CMakeLists.txt setup.py` is empty after adding the extension.
 

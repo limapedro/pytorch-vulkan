@@ -13,6 +13,7 @@ that would settle it; it is not a plan or a wish.
 | [exp_004](experiments/exp_004_cross_process/HYPOTHESIS.md) | CUDA and fork cannot coexist in one process; serialized references are necessary for parity. | done | H1 provisional (coexistence not directly tested), H2 confirmed for tiny tensors |
 | [exp_005](experiments/exp_005_device_registration/HYPOTHESIS.md) | An out-of-tree PrivateUse1 extension can register `kaminari` with zero core edits and the reference pattern works on Windows. | done | confirmed: autoload, device parsing, guard/hooks, 3/3 smoke tests |
 | [exp_006](experiments/exp_006_vulkan_runtime/HYPOTHESIS.md) | A Vulkan compute context can be created with required features and queried limits matching vulkaninfo. | done | confirmed: runtime dump matches all probed limits; 2/2 runtime tests |
+| [exp_007](experiments/exp_007_memory_ops/HYPOTHESIS.md) | A c10::Allocator over Vulkan buffers can back empty/copy/fill/item with exact values. | done | confirmed: exact fp32 smoke, 4/4 memory tests, fallback counted |
 
 ## Rules
 
