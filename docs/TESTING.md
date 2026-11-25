@@ -19,6 +19,15 @@
 4. CI cheap checks: lint, docs checks, shader compile, op tests on lavapipe.
 5. Full build nightly/manual; GPU performance runs local only.
 
-## Commands (to be filled after the first build)
+## Commands
 
-No test command has been run yet; do not record one until it has.
+Phase 1 device registration (run with the fork venv; autoload makes `import kaminari`
+unnecessary after `pip install -e kaminari`):
+
+```
+python kaminari/tests/test_smoke.py
+```
+
+Measured result: 3 tests passed (`test_device_parsing`, `test_device_module`,
+`test_lazy_init`). Op tests and OpInfo parity arrive with issues #11/#12; CI on lavapipe
+is still to be added.

@@ -17,6 +17,10 @@ Base: upstream tag `v2.15.0`. Fork default: `stable/v2.15.0`. Decision D007 in
 | Codegen | `torchgen/model.py`, `torchgen/gen.py` | none; `gen_backend_stubs.py` remains an unverified optional path | no core edit |
 | Build-system hooks | `pyproject.toml`, `CMakeLists.txt`, `setup.py` | none; backend builds as a standalone CMake extension against installed Torch | no core edit (verify at Phase 1) |
 | Python bindings | `torch/csrc/Module.cpp` | none; extension supplies its own pybind module | no core edit |
+| Extension build hook | `kaminari/CMakeLists.txt`, `kaminari/setup.py` | standalone CMake/pybind11 build against installed Torch; `torch.backends` autoload entry point | self-contained tree |
+| Python device module | `kaminari/torch_kaminari/` | registers `torch.kaminari`, generates tensor/storage methods | self-contained tree |
+
+Validated by exp_005: `git diff --stat stable/v2.15.0 -- c10 aten torch torchgen CMakeLists.txt setup.py` is empty after adding the extension.
 
 ## Self-contained backend tree
 

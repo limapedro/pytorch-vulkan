@@ -1,0 +1,6 @@
+build_cmake/
+*.egg-info/
+torch_kaminari/*.pyd
+torch_kaminari/*.so
+torch_kaminari/*.dll
+torch_kaminari/__pycache__/
