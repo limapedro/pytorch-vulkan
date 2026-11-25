@@ -1,3 +1,5 @@
+#include "Runtime.h"
+
 #include <ATen/Context.h>
 #include <c10/core/DeviceType.h>
 #include <c10/util/Exception.h>
@@ -39,4 +41,7 @@ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
   m.def("_get_device", &kaminari::currentDevice);
   m.def("_set_device", &kaminari::setDevice);
   m.def("_exchange_device", &kaminari::exchangeDevice);
+  m.def("_device_info", &kaminari::deviceInfo);
+  m.def("_is_vulkan_available", &kaminari::isVulkanAvailable);
+  m.def("_synchronize_vulkan", &kaminari::synchronizeVulkan);
 }

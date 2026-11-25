@@ -29,5 +29,14 @@ python kaminari/tests/test_smoke.py
 ```
 
 Measured result: 3 tests passed (`test_device_parsing`, `test_device_module`,
-`test_lazy_init`). Op tests and OpInfo parity arrive with issues #11/#12; CI on lavapipe
-is still to be added.
+`test_lazy_init`).
+
+Vulkan runtime (issue #10):
+
+```
+python kaminari/tests/test_runtime.py
+```
+
+Measured result: 2 tests passed (`test_device_info`, `test_synchronize`). Raw capability
+dump in `benchmarks/kaminari/results/2026-11-25_vulkan_capabilities.json`. Op tests and
+OpInfo parity arrive with issues #11/#12; CI on lavapipe is still to be added.

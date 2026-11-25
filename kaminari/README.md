@@ -11,9 +11,11 @@ Self-contained PyTorch Vulkan backend. All code here is out-of-tree; no files un
 - `CMakeLists.txt` - standalone build against an installed Torch.
 - `setup.py` - editable install with the `torch.backends` autoload entry point.
 
-## Status (PR #13, issue #9)
+## Status (Phase 1, issues #9/#10)
 
-Device registration only. `torch.device("kaminari:0")` parses, `torch.kaminari` works,
-and `import torch` alone registers the backend after `pip install -e kaminari`. There
-is no allocator or kernel yet, so `torch.empty(..., device="kaminari")` is expected to
-raise `NotImplementedError`. Vulkan runtime and first ops follow in issues #10/#11.
+Device registration and Vulkan runtime. `torch.device("kaminari:0")` parses,
+`torch.kaminari` works, and `import torch` alone registers the backend after
+`pip install -e kaminari`. `_C._device_info()` returns live GPU limits/features and
+`_C._synchronize_vulkan()` waits for the compute queue. There is no allocator or kernel
+yet, so `torch.empty(..., device="kaminari")` is expected to raise `NotImplementedError`.
+Allocator and first ops follow in issue #11.

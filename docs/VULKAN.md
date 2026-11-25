@@ -12,6 +12,14 @@ on 2026-11-25; other GPUs must be filled in by the standalone probe script (Phas
 
 Per-GPU results for AMD/Intel/other NVIDIA are tracked in `docs/DEVICES.md`.
 
+Runtime query (exp_006, `_C._device_info()`, raw JSON in
+`benchmarks/kaminari/results/2026-11-25_vulkan_capabilities.json`) confirmed the dev-card
+row: subgroup 32, 1024 invocations, 49,152 B shared memory, 256 B push constants, 64
+timestamp bits, compute family 0, transfer-only family 1, and all of BDA/timeline/fp16/
+int8/16-bit storage true. 272 device extensions were enumerated. The runtime enables
+those features at device creation and queries limits at runtime rather than hard-coding
+them.
+
 ## Instance and device
 
 - Instance API 1.4.363 available; validation, synchronization2, shader-object and
