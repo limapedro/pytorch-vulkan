@@ -67,6 +67,7 @@ class Runtime {
   Runtime& operator=(const Runtime&) = delete;
 
   VkInstance instance_ = VK_NULL_HANDLE;
+  VkDebugUtilsMessengerEXT messenger_ = VK_NULL_HANDLE;
   VkPhysicalDevice physical_ = VK_NULL_HANDLE;
   VkDevice device_ = VK_NULL_HANDLE;
   VkQueue compute_queue_ = VK_NULL_HANDLE;

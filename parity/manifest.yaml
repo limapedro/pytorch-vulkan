@@ -32,10 +32,10 @@ ops:
     overloads: [add, add_, add.out]
     tier: 0
     dtypes: [float32]
-    status: roadmap
-    parity: null
+    status: forward done
+    parity: "exact fp32 match vs CPU, 4 and 64 elements (kaminari/tests/test_add.py)"
     perf_ratio_cuda: null
-    pr: null
+    pr: "#16"
   - name: mul
     overloads: [mul, mul_]
     tier: 0

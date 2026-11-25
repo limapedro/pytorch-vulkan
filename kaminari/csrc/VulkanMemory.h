@@ -26,5 +26,6 @@ void copyDeviceToDevice(
     const Allocation* src,
     std::uint64_t bytes);
 void fillBuffer(Allocation* dst, std::uint32_t pattern, std::uint64_t bytes);
+void submitAndWait();
 
 } // namespace kaminari

@@ -1,0 +1,23 @@
+#version 450
+#extension GL_EXT_buffer_reference2 : require
+
+layout(local_size_x = 64) in;
+
+layout(buffer_reference, std430) readonly buffer FloatRef {
+  float values[];
+};
+
+layout(push_constant) uniform Params {
+  FloatRef a;
+  FloatRef b;
+  FloatRef result;
+  uint n;
+  float alpha;
+} params;
+
+void main() {
+  uint i = gl_GlobalInvocationID.x;
+  if (i < params.n) {
+    params.result.values[i] = params.a.values[i] + params.b.values[i] * params.alpha;
+  }
+}
