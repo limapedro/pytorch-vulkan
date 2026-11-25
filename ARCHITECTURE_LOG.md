@@ -24,6 +24,8 @@ changing it.
 
 | D012 | 2026-11-25 | Validate the out-of-tree PrivateUse1 route before writing kernels. | Device string, module functions, guard, hooks and autoload all work with an empty core diff; the extension builds standalone against the built Torch. | exp_005; `kaminari/CMakeLists.txt`, `kaminari/setup.py`, `kaminari/csrc/`. | locked |
 
+| D013 | 2026-11-25 | Query all Vulkan limits/features at runtime and enable BDA, timeline semaphores, 16-bit storage, fp16/int8 and descriptor indexing at device creation; do not bake in TU116 values. | Runtime query matched the independent `vulkaninfo` dump; other GPUs need different subgroup sizes and feature sets. | exp_006 raw JSON; `kaminari/csrc/Runtime.cpp`. | locked |
+
 ## Pending decisions
 
 - Two-venv comparison strategy is locked as D009 but marked provisional on H1 (coexistence in one process was not directly tested).
