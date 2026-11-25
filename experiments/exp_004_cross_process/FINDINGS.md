@@ -29,6 +29,14 @@ Reference tensors (6 inputs, 4 CPU expected outputs) were generated under
 Largest observed difference: 1.6764e-07, far below tolerance. This is a tiny-tensor
 result only; larger shapes, other dtypes and other ops are not established.
 
+## Fork CPU validation (after build)
+
+The built fork (`torch 2.15.0a0+git8f2938f`, `USE_CUDA=0`) loaded the same serialized
+reference tensors through `compare.py` on CPU. All 10 tensors (6 inputs + 4 expected
+outputs) matched exactly (`max_abs_diff = 0.0`); raw output in
+`results/fork_cpu_raw.json`. This validates the harness, not Kaminari device parity —
+there is no Vulkan device implementation yet.
+
 ## Consequence
 
 The fork-side harness `compare.py` loads these serialized references and will compare

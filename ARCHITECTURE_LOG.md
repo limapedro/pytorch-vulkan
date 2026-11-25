@@ -20,8 +20,10 @@ changing it.
 | D009 | 2026-11-25 | Keep separate baseline/fork venvs and compare via serialized reference tensors. | Measured: Python 3.10 cannot install torch 2.15.0; directml pins torch 2.4.1; 2.15.0+cu132 works on driver 621.01; cross-process references compare within 1.68e-7 for tiny tensors. Coexistence in one process was **not** directly tested because the fork has not built yet; this decision will be revisited if it becomes possible. | `agent_space/baseline/REPORT.md`, `benchmarks/kaminari/results/2026-11-25_parity_report.json`, exp_004. | locked after measurement, provisional on H1 |
 | D010 | 2026-11-25 | Use the official `cu132` wheel (`torch 2.15.0+cu132`) as the version-matched CUDA baseline, not PyPI's CPU-only 2.15.0 wheel. | PyPI Windows wheel has no CUDA dependencies; the official index carries the CUDA build and it runs on this driver. | `pip install --dry-run torch==2.15.0` (126.7 MB, CPU) vs `cu132` index (2108.3 MB, `cuda_available=True`). | locked |
 
+| D011 | 2026-11-25 | Keep `MAX_JOBS=2` for source builds on this host. | With 4 jobs, four large `torch/csrc/jit/passes/*.cpp` objects failed together with no diagnostic; with 2 jobs the build completed. | exp_002 attempts 4 and 5; `agent_space/build_fork.ps1`. | locked |
+
 ## Pending decisions
 
-- Whether the no-CUDA fork build succeeds once submodules are initialized (issue #5). First attempts failed before CMake: (a) PowerShell 5.1 treated native stderr as a terminating error under `$ErrorActionPreference = "Stop"`; (b) blobless clone left 36 submodules empty so `project.license-files` patterns could not be matched. Both are recorded in `experiments/exp_002_build/FINDINGS.md`.
-- Two-venv comparison strategy (mission says record **after** measuring, not before).
+- Two-venv comparison strategy is locked as D009 but marked provisional on H1 (coexistence in one process was not directly tested).
+- ccache/sccache installation (H3 in exp_002): not needed for a green build; revisit if incremental rebuild times justify it.
 - Licensing: PyTorch v2.15.0's `pyproject.toml:356` uses a composite SPDX expression including BSD-3-Clause and MIT, not a bare BSD-3. The mission's simplification is noted; preserve all upstream license files.

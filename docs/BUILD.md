@@ -1,7 +1,8 @@
 # BUILD
 
-Status: **recon complete, fork build not yet attempted** (2026-11-25). Nothing in this
-file is a claimed successful build.
+Status: **fork build green** (2026-11-25). `pip install -e . -v --no-build-isolation`
+exited 0 with `USE_CUDA=0`; the built wheel imports and reports no CUDA. Full build log
+is `agent_space/build.log` (git-ignored); evidence in `experiments/exp_002_build/FINDINGS.md`.
 
 ## Source layout
 
@@ -40,6 +41,13 @@ file is a claimed successful build.
   `project.license-files` patterns such as `third_party/FP16/LICENSE` do not match.
 - PowerShell 5.1: do not run the pip build with `$ErrorActionPreference = "Stop"`; native
   stderr becomes a terminating error. Use `cmd /c "... > build.log 2>&1"` instead.
+- CMake 4.4.5 from the pip `cmake` wheel failed once in a SLEEF 3.8.0 `try_compile`
+  probe (`ninja -v cmTC_80db8`); uninstalling it let the system CMake 4.3.3 be used for
+  one attempt. Note `pip install -r requirements-build.txt` reinstalls 4.4.5 on every
+  build run, so the pin is not sticky. The later configure with 4.4.5 succeeded.
+- Use `MAX_JOBS=2` / `CMAKE_BUILD_PARALLEL_LEVEL=2`: with 4 jobs, four large
+  `torch/csrc/jit/passes/*.cpp` objects failed together with no diagnostic after
+  ~49 minutes. A 2-job retry is in progress to reuse the ~1,700 existing objects.
 - ccache/sccache: to be installed before the first full build; record the exact command here.
 - RenderDoc: to be installed before GPU debugging; validate with `renderdoccmd version`.
 
@@ -51,10 +59,13 @@ The repo's `CLAUDE.md` mandates one build entry point:
 pip install -e . -v --no-build-isolation
 ```
 
-No other command may be used to build PyTorch. The no-CUDA configuration will be set
-with environment variables (`USE_CUDA=0`, `USE_DISTRIBUTED=0`, `BUILD_TESTING=0`,
-`USE_CUDNN=0`, `CCACHE_WRAPPER` once installed) applied to that command. Exact successful
-commands, timings and fixes go here after the first build (issue #5).
+No other command may be used to build PyTorch. The successful no-CUDA configuration used environment variables
+`USE_CUDA=0`, `USE_CUDNN=0`, `USE_DISTRIBUTED=0`, `BUILD_TESTING=0`, `MAX_JOBS=2`,
+`CMAKE_BUILD_PARALLEL_LEVEL=2`, applied to that command from a VS DevShell.
+Build time: 03:13:07 -> 04:35:37 (1 h 22 min, reusing objects from an earlier failed
+attempt). Wheel: `torch-2.15.0a0+git8f2938f`, 93,180,921 B. Verification:
+`torch.version.cuda is None`, `torch.cuda.is_available() is False`, basic `add`/`mm`
+sanity checks pass. ccache/sccache remains uninstalled (H3 in exp_002).
 
 ## Baseline environments (measured)
 
