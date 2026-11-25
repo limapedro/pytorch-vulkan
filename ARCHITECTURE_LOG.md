@@ -26,6 +26,8 @@ changing it.
 
 | D013 | 2026-11-25 | Query all Vulkan limits/features at runtime and enable BDA, timeline semaphores, 16-bit storage, fp16/int8 and descriptor indexing at device creation; do not bake in TU116 values. | Runtime query matched the independent `vulkaninfo` dump; other GPUs need different subgroup sizes and feature sets. | exp_006 raw JSON; `kaminari/csrc/Runtime.cpp`. | locked |
 
+| D014 | 2026-11-25 | Use buffer device addresses as `DataPtr` pointers and a mutex-protected 4096 B size-class reuse pool for allocator v1; no suballocation/coalescing until Phase 4. | BDA is enabled and queried on the dev card; it avoids per-op descriptors and gives a valid device pointer for `DataPtr`. Correctness first; fragmentation work is a later experiment. | exp_006/007; `kaminari/csrc/Allocator.cpp`, `VulkanMemory.cpp`. | locked (v1) |
+
 ## Pending decisions
 
 - Two-venv comparison strategy is locked as D009 but marked provisional on H1 (coexistence in one process was not directly tested).

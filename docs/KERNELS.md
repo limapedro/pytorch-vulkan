@@ -5,7 +5,8 @@ committed roofline result (ratio to measured peak, not spec sheet).
 
 | Kernel | Op(s) | Strategy | Tuning parameters | Dtypes | Roofline result | PR |
 |---|---|---|---|---|---|---|
-| (none yet) | - | - | - | - | - | - |
+| fill/zero | `fill_.Scalar`, `zero_` | `vkCmdFillBuffer` with float32 bit pattern | buffer offset alignment, fill width | fp32, int32 | not measured | - |
+| add | `add.out`, `add.Tensor` | **not implemented**; counted CPU fallback | - | - | no claim | - |
 
 ## Design constraints
 

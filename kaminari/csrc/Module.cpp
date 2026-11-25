@@ -1,3 +1,4 @@
+#include "Ops.h"
 #include "Runtime.h"
 
 #include <ATen/Context.h>
@@ -44,4 +45,5 @@ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
   m.def("_device_info", &kaminari::deviceInfo);
   m.def("_is_vulkan_available", &kaminari::isVulkanAvailable);
   m.def("_synchronize_vulkan", &kaminari::synchronizeVulkan);
+  m.def("_fallback_count", &kaminari::fallbackCount);
 }

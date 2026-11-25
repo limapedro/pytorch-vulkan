@@ -9,7 +9,14 @@ find_package(Vulkan REQUIRED)
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 find_package(pybind11 CONFIG REQUIRED)
 
-pybind11_add_module(_C csrc/Module.cpp csrc/Guard.cpp csrc/Runtime.cpp)
+pybind11_add_module(
+  _C
+  csrc/Module.cpp
+  csrc/Guard.cpp
+  csrc/Runtime.cpp
+  csrc/Allocator.cpp
+  csrc/VulkanMemory.cpp
+  csrc/Ops.cpp)
 target_compile_definitions(_C PRIVATE TORCH_EXTENSION_NAME=_C)
 target_include_directories(_C PRIVATE ${TORCH_INCLUDE_DIRS})
 target_compile_options(_C PRIVATE ${TORCH_CXX_FLAGS})
